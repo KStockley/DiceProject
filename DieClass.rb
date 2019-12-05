@@ -29,8 +29,8 @@ class Die
 		if results.size > 1
 			puts "\nDice results: #{results.join(" ")}"
 		else
-			puts "Die result: #{results.join(" ")}"
+			puts "\nDie result: #{results.join(" ")}"
 		end
-		puts "Total: #{results.sum}\n\n"
+		puts "Total: #{results.sum}"
 	end
 end
