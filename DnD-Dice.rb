@@ -35,13 +35,11 @@ def dnd_dice
         when "*"
           total *= roll_dice(ele.split('d'))
         end
-      end
-
       elsif ele == "+" || ele == "-" || ele == "\/" || ele == "*" #if the element is an arithmetic operator (+, -, *, or /)
         operator = ele #store it in <operator>
-      end
-      
+        puts "\n#{operator}"
       elsif ele.match(/\d+/) #if the element is a constant
+        puts "\n#{ele}"
         case operator #apply the constant to <total> via <operator>
         when "+"
           total += ele.to_i
@@ -54,6 +52,8 @@ def dnd_dice
         end
       end
     end
+    puts "\n="
+    puts "\nFinal total: #{total}"
   end
 end
 
