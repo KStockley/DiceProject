@@ -1,29 +1,5 @@
 #!/usr/bin/env ruby
-require "./DieClass.rb"
-
-#generate the standard set of dice for Dungeons and Dragons
-D4 = Die.new 4
-D6 = Die.new 6
-D8 = Die.new 8
-D10 = Die.new 10
-D12 = Die.new 12
-D20 = Die.new 20
-D100 = Die.new 100
-
-TUTORIAL = <<HELP
-\nUSAGE: Enter in the sequence of dice and/or modifiers you wish to calculate
-         DICE: [number of dice] followed by the die to roll (d4, d6, etc.)
-         MODIFIERS: [positive integer]
-         OPERATORS: [+, -, /, *]
-
-EXAMPLE: "3d6 + 2d8 - 6"\n
-
-SEE ALSO: dice\n
-HELP
-
-DICE_HELP = <<HELP
-\nThe D20 system uses the following dice: d4, d6, d8, d10, d12, d20, and d100\n
-HELP
+require "./D20Constants.rb"
 
 def dnd_dice
   system("clear")
@@ -51,21 +27,26 @@ def dnd_dice
     #for each element of <input>
     input.each do |ele|
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
+        result = roll_dice(ele.split('d'))
+
         case operator         #roll the dice and apply the result(s) to <total> via <operator>
         when "+"
-          total += roll_dice(ele.split('d'))
+          total += result
         when "-"
-          total -= roll_dice(ele.split('d'))
+          total -= result
         when "/"
-          total /= roll_dice(ele.split('d'))
+          total /= result
         when "*"
-          total *= roll_dice(ele.split('d'))
+          total *= result
         end
+
       elsif ele == "+" || ele == "-" || ele == "\/" || ele == "*" #if the element is an arithmetic operator (+, -, *, or /)
         operator = ele        #store it in <operator>
-        puts "\n#{operator}"
+        puts "\n\t#{operator}"
+
       elsif ele.match(/^\d+$/)  #if the element is a constant
-        puts "\n#{ele}"
+        puts "\n\t#{ele}"
+
         case operator         #apply the constant to <total> via <operator>
         when "+"
           total += ele.to_i
@@ -76,6 +57,7 @@ def dnd_dice
         when "*"
           total *= ele.to_i
         end
+        
       else
         #Invalid input response
         puts "\nERROR: #{ele} is an invalid entry. Please refer to the 'help' command\n\n"
@@ -84,7 +66,7 @@ def dnd_dice
       end
     end
     unless error
-      puts "\n="
+      puts "\n\t="
       puts "\nFinal total: #{total}"
     end
   end
