@@ -9,14 +9,29 @@ D10 = Die.new 10
 D12 = Die.new 12
 D20 = Die.new 20
 
+TUTORIAL = <<HELP
+\nUSAGE: Enter in the sequence of dice and/or modifiers you wish to calculate
+       DICE: [number of dice]d[number of die sides]
+       MODIFIERS: [positive integer]
+       OPERATORS: [+, -, /, *]
+
+EXAMPLE: "3d6 + 2d8 - 6"\n
+HELP
+
 def dnd_dice
   system("clear")
 
   while true
     total = 0 #results total starts at 0 for each roll
     operator = "+" #default to addition for the very first element
-    print "Enter the dice to be rolled (3d6 for example) or 'exit': "
+    
+    print "Enter the dice to be rolled (3d6 + 2 for example), 'help' or 'exit': "
     input = gets.strip.split(' ') #separate each piece of the die roll
+
+    if input.empty? || input[0] == "help"
+      print TUTORIAL
+      next
+    end
 
     if input[0] == "exit" #check for exit condition
       return
@@ -50,6 +65,8 @@ def dnd_dice
         when "*"
           total *= ele.to_i
         end
+      else
+        #Invalid input response
       end
     end
     puts "\n="
@@ -62,7 +79,7 @@ def roll_dice (dice)
   number = dice[0].to_i
   sides = dice[1].to_i
 
-  case sides #roll the appropriate number of the appropriately sided die
+  case sides #roll the specified sided die the specified number of times
   when 4
     D4.roll(number)
   when 6
