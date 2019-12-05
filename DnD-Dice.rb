@@ -10,15 +10,15 @@ D12 = Die.new 12
 D20 = Die.new 20
 
 def rolling
-	system("clear")
+  system("clear")
 
-	while true
-		puts "Enter the dice to be rolled (3d6 for example) or 'exit': "
-		input = gets.split("d") # parse out the x and y from xdy
+  while true
+    puts "Enter the dice to be rolled (3d6 for example) or 'exit': "
+    input = gets.split("d") # parse out the x and y from xdy
 
-		if input[0] == "exit\n" # check for exit condition
-			return
-		end
+    if input[0] == "exit\n" # check for exit condition
+      return
+    end
 
     # convert the numbers of dice and sides to Integers
     number = input[0].to_i
@@ -40,7 +40,7 @@ def rolling
     else
     	puts "That is an invalid type of die. Please try again."
     end
-	end
+  end
 end
 
 rolling
