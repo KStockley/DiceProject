@@ -50,7 +50,7 @@ def dnd_dice
 
     #for each element of <input>
     input.each do |ele|
-      if ele.match(/\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
+      if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
         case operator         #roll the dice and apply the result(s) to <total> via <operator>
         when "+"
           total += roll_dice(ele.split('d'))
@@ -110,9 +110,6 @@ def roll_dice (dice)
     D20.roll(number)
   when 100
     D100.roll(number)
-  else
-    puts "That is not a die used in Dungeons and Dragons. Please try again."
-    return -1
   end
 end
 
