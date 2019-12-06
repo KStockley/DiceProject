@@ -6,7 +6,7 @@ def dnd_dice
 
   while true
     error = false
-    total = 0 #results total starts at 0 for each roll
+    sum = 0 #results sum starts at 0 for each roll
     operator = "+" #default to addition for the very first element
     
     print "Enter the dice to be rolled (3d6 + 2 for example), 'help' or 'exit': "
@@ -29,15 +29,15 @@ def dnd_dice
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
         result = roll_dice(ele.split('d'))
 
-        case operator          #roll the dice and apply the result(s) to <total> via <operator>
+        case operator          #roll the dice and apply the result(s) to <sum> via <operator>
         when "+"
-          total += result
+          sum += result
         when "-"
-          total -= result
+          sum -= result
         when "/"
-          total /= result
+          sum /= result
         when "*"
-          total *= result
+          sum *= result
         end
 
       elsif ele == "+" || ele == "-" || ele == "\/" || ele == "*" #if the element is an arithmetic operator (+, -, *, or /)
@@ -47,15 +47,15 @@ def dnd_dice
       elsif ele.match(/^\d+$/) #if the element is a constant
         puts "\n\t#{ele}"
 
-        case operator          #apply the constant to <total> via <operator>
+        case operator          #apply the constant to <sum> via <operator>
         when "+"
-          total += ele.to_i
+          sum += ele.to_i
         when "-"
-          total -= ele.to_i
+          sum -= ele.to_i
         when "/"
-          total /= ele.to_i
+          sum /= ele.to_i
         when "*"
-          total *= ele.to_i
+          sum *= ele.to_i
         end
         
       else
@@ -67,7 +67,7 @@ def dnd_dice
     end
     unless error
       puts "\n\t="
-      puts "\nFinal total: #{total}"
+      puts "\nFinal sum: #{sum}\n\n"
     end
   end
 end
