@@ -27,9 +27,9 @@ def dnd_dice
     #for each element of <input>
     input.each do |ele|
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
-        result = roll_dice(ele.split('d'))
+        result = roll_dice(ele.split('d')) #roll the dice
 
-        case operator          #roll the dice and apply the result(s) to <sum> via <operator>
+        case operator          #and apply the result(s) to <sum> via <operator>
         when "+"
           sum += result
         when "-"
