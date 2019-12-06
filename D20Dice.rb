@@ -29,7 +29,7 @@ def dnd_dice
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
         result = roll_dice(ele.split('d'))
 
-        case operator         #roll the dice and apply the result(s) to <total> via <operator>
+        case operator          #roll the dice and apply the result(s) to <total> via <operator>
         when "+"
           total += result
         when "-"
@@ -41,13 +41,13 @@ def dnd_dice
         end
 
       elsif ele == "+" || ele == "-" || ele == "\/" || ele == "*" #if the element is an arithmetic operator (+, -, *, or /)
-        operator = ele        #store it in <operator>
+        operator = ele         #store it in <operator>
         puts "\n\t#{operator}"
 
-      elsif ele.match(/^\d+$/)  #if the element is a constant
+      elsif ele.match(/^\d+$/) #if the element is a constant
         puts "\n\t#{ele}"
 
-        case operator         #apply the constant to <total> via <operator>
+        case operator          #apply the constant to <total> via <operator>
         when "+"
           total += ele.to_i
         when "-"
