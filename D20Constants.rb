@@ -11,8 +11,8 @@ D100 = Die.new 100
 
 #help documents for the D20 roller
 TUTORIAL = <<HELP
-\nUSAGE: Enter in the sequence of dice and/or modifiers you wish to calculate
-         DICE: [number of dice] followed by the die to roll (d4, d6, etc.)
+\nUSAGE: Enter in the sequence of dice and/or modifiers you wish to calculate separated by spaces
+         DICE: [number of dice]d[number of sides]
          MODIFIERS: [positive integer]
          OPERATORS: [+, -, /, *]
 
