@@ -68,9 +68,8 @@ def dnd_dice
   end
 end
 
-def roll_dice (dice)
-  #convert the numbers of dice and sides to Integers
-  number = dice[0].to_i
+def roll_dice (dice) #<dice> is an array of [<number of dice to roll>, <number of die sides>]
+  number = dice[0].to_i #convert the numbers of dice and sides to Integers
   sides = dice[1].to_i
   results = []
 
