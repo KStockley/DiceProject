@@ -57,7 +57,7 @@ def dnd_dice
         
       else
         #Invalid input response
-        puts "\nERROR: #{ele} is an invalid entry. Please refer to the 'help' and 'dice' commands\n\n"
+        puts "\nERROR: #{ele} is not a valid entry. Please refer to the 'help' and 'dice' commands\n\n"
         error = true
         break
       end
