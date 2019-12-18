@@ -36,6 +36,8 @@ def dnd_dice
           sum -= result
         end
 
+        puts "\n\t#{ele}: #{result}"
+
       elsif ele == "+" || ele == "-" #if the element is an arithmetic operator (+ or -)
         operator = ele         #store it in <operator>
         puts "\n\t#{operator}"
@@ -68,23 +70,11 @@ def roll_dice (dice)
   #convert the numbers of dice and sides to Integers
   number = dice[0].to_i
   sides = dice[1].to_i
+  result = 0
 
-  case sides #roll the specified sided die the specified number of times
-  when 4
-    D4.roll(number)
-  when 6
-    D6.roll(number)
-  when 8
-    D8.roll(number)
-  when 10
-    D10.roll(number)
-  when 12
-    D12.roll(number)
-  when 20
-    D20.roll(number)
-  when 100
-    D100.roll(number)
-  end
+  number.times { |i| result += rand(sides) + 1 }
+
+  result
 end
 
 dnd_dice
