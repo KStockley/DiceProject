@@ -14,7 +14,7 @@ TUTORIAL = <<HELP
 \nUSAGE: Enter in the sequence of dice and/or modifiers you wish to calculate separated by spaces
          DICE: [number of dice]d[number of sides]
          MODIFIERS: [positive integer]
-         OPERATORS: [+, -, /, *]
+         OPERATORS: [+, -]
 
 EXAMPLE: "3d6 + 2d8 - 6"\n
 

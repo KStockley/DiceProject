@@ -27,20 +27,16 @@ def dnd_dice
     #for each element of <input>
     input.each do |ele|
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a die roll in <Integer>d<Integer> format
-        result = roll_dice(ele.split('d')) #roll the dice
+        result = roll_dice(ele.split('d')) #roll using number of dice and number of sides
 
         case operator          #and apply the result(s) to <sum> via <operator>
         when "+"
           sum += result
         when "-"
           sum -= result
-        when "/"
-          sum /= result
-        when "*"
-          sum *= result
         end
 
-      elsif ele == "+" || ele == "-" || ele == "\/" || ele == "*" #if the element is an arithmetic operator (+, -, *, or /)
+      elsif ele == "+" || ele == "-" #if the element is an arithmetic operator (+ or -)
         operator = ele         #store it in <operator>
         puts "\n\t#{operator}"
 
@@ -52,10 +48,6 @@ def dnd_dice
           sum += ele.to_i
         when "-"
           sum -= ele.to_i
-        when "/"
-          sum /= ele.to_i
-        when "*"
-          sum *= ele.to_i
         end
         
       else
