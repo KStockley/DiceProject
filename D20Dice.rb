@@ -8,6 +8,7 @@ def dnd_dice
     error = false
     sum = 0 #results sum starts at 0 for each roll
     operator = "+" #default to addition for the very first element
+    output = []
     
     print "Enter the dice to be rolled (3d6 + 2 for example), 'help' or 'exit': "
     input = gets.strip.split(' ') #separate each piece of the die roll
@@ -27,7 +28,9 @@ def dnd_dice
     #for each element of <input>
     input.each do |ele|
       if ele.match(/^\d+d(4||6||8||10||12||20||100)$/) #if the element is a valid <Integer>d<Integer> die roll
-        result = roll_dice(ele.split('d')) #roll using number of dice and number of sides
+        readout = roll_dice(ele.split('d')) #roll the dice
+        result = readout.sum
+        output << result
 
         case operator          #and apply the result(s) to <sum> via <operator>
         when "+"
@@ -36,12 +39,14 @@ def dnd_dice
           sum -= result
         end
 
+        puts "\n<\t#{ele}: #{readout.join(", ")} = #{result}"
+
       elsif ele == "+" || ele == "-" #if the element is an arithmetic operator (+ or -)
         operator = ele         #store it in <operator>
-        puts "\n\t#{operator}"
+        output << operator
 
       elsif ele.match(/^\d+$/) #if the element is a constant
-        puts "\n\t#{ele}"
+        output << ele
 
         case operator          #apply the constant to <sum> via <operator>
         when "+"
@@ -58,8 +63,7 @@ def dnd_dice
       end
     end
     unless error
-      puts "\n\t="
-      puts "\nFinal sum: #{sum}\n\n"
+      puts "\n<\t#{output.join(' ')} = #{sum}"
     end
   end
 end
@@ -68,23 +72,11 @@ def roll_dice (dice)
   #convert the numbers of dice and sides to Integers
   number = dice[0].to_i
   sides = dice[1].to_i
+  results = []
 
-  case sides #roll the specified sided die the specified number of times
-  when 4
-    D4.roll(number)
-  when 6
-    D6.roll(number)
-  when 8
-    D8.roll(number)
-  when 10
-    D10.roll(number)
-  when 12
-    D12.roll(number)
-  when 20
-    D20.roll(number)
-  when 100
-    D100.roll(number)
-  end
+  number.times { |i| results << rand(sides) + 1 }
+
+  results
 end
 
 dnd_dice
